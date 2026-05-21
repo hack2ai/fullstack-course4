@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food, LLC</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 3 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+  <style>
+    /* ── Root variables ───────────────────────────────── */
+    :root {
+      --cream:   #fdf6ec;
+      --charcoal:#1a1a2e;
+      --gold:    #c9a84c;
+      --rust:    #b5451b;
+      --sage:    #4a7c59;
+      --muted:   #8a7968;
+      --menu-bg: #1a1a2e;
+    }
+
+    /* ── Base ─────────────────────────────────────────── */
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+    }
+
+    /* ── NAVBAR ───────────────────────────────────────── */
+    .navbar {
+      background-color: var(--charcoal);
+      border: none;
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--gold) !important;
+      letter-spacing: 1px;
+      padding: 12px 20px;
+    }
+
+    /* Hamburger icon */
+    .navbar-toggle {
+      border-color: var(--gold);
+      margin-top: 10px;
+    }
+    .navbar-toggle .icon-bar {
+      background-color: var(--gold);
+    }
+    .navbar-toggle:hover,
+    .navbar-toggle:focus {
+      background-color: rgba(201,168,76,.15);
+    }
+
+    /* Full-width dropdown on mobile */
+    .navbar-collapse {
+      padding: 0;
+      background-color: var(--menu-bg);
+    }
+
+    .navbar-nav > li > a {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ddd !important;
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      transition: color .2s, background .2s;
+    }
+    .navbar-nav > li > a:hover {
+      color: var(--gold) !important;
+      background-color: rgba(201,168,76,.1) !important;
+    }
+
+    /* ── HERO / PAGE HEADING ──────────────────────────── */
+    .page-heading-wrap {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+      padding: 60px 20px 50px;
+      text-align: center;
+    }
+
+    .page-heading-wrap h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 6vw, 70px);
+      color: var(--cream);
+      margin: 0 0 10px;
+      letter-spacing: 2px;
+    }
+
+    .page-heading-wrap .subtitle {
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .heading-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 18px auto 0;
+    }
+
+    /* ── MENU SECTIONS WRAPPER ────────────────────────── */
+    .menu-container {
+      padding: 40px 0 60px;
+    }
+
+    /* ── INDIVIDUAL SECTION CARD ──────────────────────── */
+    .menu-section {
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(26,26,46,.10);
+      margin-bottom: 30px;
+      min-height: 700px;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .3s;
+    }
+    .menu-section:hover {
+      box-shadow: 0 8px 40px rgba(26,26,46,.18);
+    }
+
+    /* Coloured top accent bar per section */
+    .menu-section.chicken .accent { background: var(--rust); }
+    .menu-section.beef    .accent { background: var(--charcoal); }
+    .menu-section.sushi   .accent { background: var(--sage); }
+
+    .menu-section .accent {
+      height: 6px;
+      width: 100%;
+    }
+
+    .section-inner {
+      padding: 36px 30px 30px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      text-align: center;
+      margin: 0 0 6px;
+    }
+    .menu-section.chicken h3 { color: var(--rust); }
+    .menu-section.beef    h3 { color: var(--charcoal); }
+    .menu-section.sushi   h3 { color: var(--sage); }
+
+    .section-tag {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .menu-section p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: #444;
+      margin-bottom: 16px;
+    }
+
+    .dish-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+    }
+    .dish-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px dashed #eee;
+      font-size: 14px;
+    }
+    .dish-list li:last-child { border-bottom: none; }
+    .dish-name { font-weight: 700; }
+    .dish-price { color: var(--muted); font-weight: 300; }
+
+    .back-to-top {
+      margin-top: auto;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .back-to-top a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      transition: color .2s;
+    }
+    .back-to-top a:hover { color: var(--gold); }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      background-color: var(--charcoal);
+      color: #aaa;
+      text-align: center;
+      padding: 26px 20px;
+      font-size: 13px;
+    }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+
+        <!-- Hamburger: visible only on xs (mobile) -->
+        <button type="button"
+                class="navbar-toggle collapsed visible-xs"
+                data-toggle="collapse"
+                data-target="#mobile-menu"
+                aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="#">Food, LLC</a>
+      </div><!-- /.navbar-header -->
+
+      <!-- Dropdown menu: visible only on xs -->
+      <div class="collapse navbar-collapse visible-xs" id="mobile-menu">
+        <ul class="nav navbar-nav">
+          <li><a href="#chicken">Chicken</a></li>
+          <li><a href="#beef">Beef</a></li>
+          <li><a href="#sushi">Sushi</a></li>
+        </ul>
+      </div>
+    </div><!-- /.container -->
+  </nav>
+
+  <!-- ══════════ PAGE HEADING ══════════ -->
+  <div class="page-heading-wrap" id="top">
+    <h1 class="text-center">Our Menu</h1>
+    <p class="subtitle">Fresh • Local • Delicious</p>
+    <div class="heading-divider"></div>
+  </div>
+
+  <!-- ══════════ MENU SECTIONS ══════════ -->
+  <div class="container menu-container">
+    <div class="row">
+
+      <!-- CHICKEN -->
+      <div class="col-xs-12 col-md-4 col-sm-6" id="chicken">
+        <div class="menu-section chicken">
+          <div class="accent"></div>
+          <div class="section-inner">
+            <h3>Chicken</h3>
+            <p class="section-tag">Poultry Classics</p>
+            <p>
+              Our chicken dishes are crafted with free-range birds slow-marinated in house-made spice blends. Every bite carries warmth, depth, and just the right amount of char.
+            </p>
+            <ul class="dish-list">
+              <li><span class="dish-name">Herb Roast Chicken</span><span class="dish-price">$18</span></li>
+              <li><span class="dish-name">Spicy Buffalo Tenders</span><span class="dish-price">$14</span></li>
+              <li><span class="dish-name">Lemon Piccata</span><span class="dish-price">$19</span></li>
+              <li><span class="dish-name">BBQ Glazed Thighs</span><span class="dish-price">$16</span></li>
+              <li><span class="dish-name">Chicken Tikka Masala</span><span class="dish-price">$17</span></li>
+              <li><span class="dish-name">Honey Garlic Drumsticks</span><span class="dish-price">$13</span></li>
+            </ul>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum eros a lorem tincidunt, vel faucibus justo dignissim. Pellentesque habitant morbi tristique senectus.
+            </p>
+            <p>
+              Sed auctor enim et nunc tristique, non viverra risus ultricies. Nulla facilisi. Donec suscipit velit non dui tempor, at pretium felis gravida.
+            </p>
+            <div class="back-to-top">
+              <a href="#top">↑ Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEEF -->
+      <div class="col-xs-12 col-md-4 col-sm-6" id="beef">
+        <div class="menu-section beef">
+          <div class="accent"></div>
+          <div class="section-inner">
+            <h3>Beef</h3>
+            <p class="section-tag">Premium Cuts</p>
+            <p>
+              Sourced from grass-fed cattle and aged to perfection, our beef selections celebrate the purest flavours of quality meat — seasoned simply so nothing gets in the way.
+            </p>
+            <ul class="dish-list">
+              <li><span class="dish-name">Ribeye Steak (12oz)</span><span class="dish-price">$38</span></li>
+              <li><span class="dish-name">Wagyu Burger</span><span class="dish-price">$22</span></li>
+              <li><span class="dish-name">Braised Short Ribs</span><span class="dish-price">$29</span></li>
+              <li><span class="dish-name">Beef Tenderloin</span><span class="dish-price">$44</span></li>
+              <li><span class="dish-name">Classic Beef Stew</span><span class="dish-price">$19</span></li>
+              <li><span class="dish-name">Smash Burgers (2×)</span><span class="dish-price">$18</span></li>
+            </ul>
+            <p>
+              Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo.
+            </p>
+            <p>
+              Maecenas faucibus mollis interdum. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo.
+            </p>
+            <div class="back-to-top">
+              <a href="#top">↑ Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUSHI -->
+      <div class="col-xs-12 col-md-4 col-sm-12" id="sushi">
+        <div class="menu-section sushi">
+          <div class="accent"></div>
+          <div class="section-inner">
+            <h3>Sushi</h3>
+            <p class="section-tag">Ocean Fresh</p>
+            <p>
+              Our sushi bar is stocked with daily-delivered fish and premium Japanese rice. Each roll and nigiri is a small work of art, designed to please both the eye and the palate.
+            </p>
+            <ul class="dish-list">
+              <li><span class="dish-name">Dragon Roll (8pc)</span><span class="dish-price">$16</span></li>
+              <li><span class="dish-name">Salmon Nigiri (2pc)</span><span class="dish-price">$9</span></li>
+              <li><span class="dish-name">Spicy Tuna Roll</span><span class="dish-price">$13</span></li>
+              <li><span class="dish-name">Omakase Platter</span><span class="dish-price">$55</span></li>
+              <li><span class="dish-name">Avocado Maki</span><span class="dish-price">$8</span></li>
+              <li><span class="dish-name">Rainbow Roll</span><span class="dish-price">$17</span></li>
+            </ul>
+            <p>
+              Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+            </p>
+            <p>
+              Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.
+            </p>
+            <div class="back-to-top">
+              <a href="#top">↑ Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <p>&copy; 2026 <span>Food, LLC</span> &mdash; All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS dependencies -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
